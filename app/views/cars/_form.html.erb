@@ -1,0 +1,62 @@
+<%= form_for(car) do |f| %>
+  <% if car.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
+
+      <ul>
+      <% car.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= label_tag :manufacturer %>
+    <%= select_tag 'manufacturer_options', options_for_select([nil] + @manufacturers.map { |opt| [opt['name'], opt['id']] },
+    @selected_manufaturer), onchange: 'get_models()' %>
+  </div>
+
+  <%= f.hidden_field :manufacturer %>
+
+  <div class="field">
+    <%= f.label :model %>
+    <%= f.select :model, car.present? ? [car.model, car.model] : [] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :plate %>
+    <%= f.text_field :plate, { prompt: 'Informe uma Placa' } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :model_year %>
+    <%= f.number_field :model_year, { prompt: 'Informe o Ano do modelo' } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :manufacturer_year %>
+    <%= f.number_field :manufacturer_year, { prompt: 'Informe o Ano de fabricação' } %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<script>
+  function get_models(){
+    $.ajax({
+      url: "/models",
+      type: "GET",
+      dataType: "script",
+      data: { manufacturer_id: $('#manufacturer_options option:selected').val() }
+    })
+  };
+
+  $("#car_model").change(function(){
+    let manufacturer = $('#car_model option:selected')[0].dataset.manufacturer
+    $('#car_manufacturer').val(manufacturer)
+  });
+</script>

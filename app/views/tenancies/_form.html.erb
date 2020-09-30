@@ -1,0 +1,37 @@
+<%= form_for(tenancy) do |f| %>
+  <% if tenancy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tenancy.errors.count, "error") %> prohibited this tenancy from being saved:</h2>
+
+      <ul>
+      <% tenancy.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :checkin %>
+    <%= f.datetime_select :checkin %>
+  </div>
+
+  <div class="field">
+    <%= f.label :checkout %>
+    <%= f.datetime_select :checkout %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tenant_cpf %>
+    <%= f.text_field :tenant_cpf %>
+  </div>
+
+  <div class="field">
+    <%= f.label :car_id %>
+    <%= f.select :car_id, Car.all.collect { |car| [ car.model, car.id ] } %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

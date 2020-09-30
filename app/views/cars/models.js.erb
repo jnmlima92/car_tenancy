@@ -1,0 +1,8 @@
+$('#car_model').empty();
+
+<% if @models.present? %>
+  <% @models.each do |model| %>
+    $('#car_model').append($('<option value="<%= model["fipe_name"] %>" data-manufacturer="<%= model["fipe_marca"] %>"><%= model["fipe_name"] %></option>'));
+  <% end %>
+<% end %>
+

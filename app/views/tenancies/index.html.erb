@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tenancies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Checkin</th>
+      <th>Checkout</th>
+      <th>Tenant cpf</th>
+      <th>Car</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tenancies.each do |tenancy| %>
+      <tr>
+        <td><%= tenancy.checkin %></td>
+        <td><%= tenancy.checkout %></td>
+        <td><%= tenancy.tenant_cpf %></td>
+        <td><%= tenancy.car.model %></td>
+        <td><%= link_to 'Show', tenancy %></td>
+        <td><%= link_to 'Edit', edit_tenancy_path(tenancy) %></td>
+        <td><%= link_to 'Destroy', tenancy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tenancy', new_tenancy_path %>

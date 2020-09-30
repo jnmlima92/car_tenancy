@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Checkin:</strong>
+  <%= @tenancy.checkin %>
+</p>
+
+<p>
+  <strong>Checkout:</strong>
+  <%= @tenancy.checkout %>
+</p>
+
+<p>
+  <strong>Tenant cpf:</strong>
+  <%= @tenancy.tenant_cpf %>
+</p>
+
+<p>
+  <strong>Car:</strong>
+  <%= @tenancy.car.model %>
+</p>
+
+<%= link_to 'Edit', edit_tenancy_path(@tenancy) %> |
+<%= link_to 'Back', tenancies_path %>
