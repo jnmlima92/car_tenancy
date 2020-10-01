@@ -27,7 +27,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :car_id %>
+    <%= f.label :car %>
     <%= f.select :car_id, Car.all.collect { |car| [ car.model, car.id ] } %>
   </div>
 

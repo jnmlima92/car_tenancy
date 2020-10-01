@@ -70,6 +70,6 @@ class TenanciesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tenancy_params
-      params.require(:tenancy).permit(:checkin, :checkout, :tenant_cpf, :car_id_id)
+      params.require(:tenancy).permit(:checkin, :checkout, :tenant_cpf, :car_id)
     end
 end

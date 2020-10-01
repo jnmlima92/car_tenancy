@@ -4,7 +4,7 @@ class CreateTenancies < ActiveRecord::Migration[5.0]
       t.datetime :checkin
       t.datetime :checkout
       t.string :tenant_cpf
-      t.references :car_id, foreign_key: true
+      t.references :car, foreign_key: true
 
       t.timestamps
     end

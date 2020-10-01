@@ -1,5 +1,6 @@
 class Tenancy < ApplicationRecord
   validates :tenant_cpf, numericality: true, presence: true
+  validates :checkin, :checkout, presence: true
   validates_length_of :tenant_cpf, minimum: 11, maximum: 11, allow_blank: false
   belongs_to :car
 
@@ -13,11 +14,11 @@ class Tenancy < ApplicationRecord
           checkout_match_tenancies = vehicle_tenancies.where(checkout: self.checkin..self.checkout).where.not(id: self.id).exists?
 
           if checkin_match_tenancies
-              self.errors.add(:checkin, "date is not unavailable")
+              self.errors.add(:checkin, "date is not unavailable to this vehicle")
           end
 
           if checkout_match_tenancies
-              self.errors.add(:checkin, "date is not unavailable")
+              self.errors.add(:checkin, "date is not unavailable to this vehicle")
           end
       end
   end

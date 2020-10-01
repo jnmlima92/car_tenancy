@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200930201828) do
+ActiveRecord::Schema.define(version: 20200930205311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,14 +25,14 @@ ActiveRecord::Schema.define(version: 20200930201828) do
     t.datetime "updated_at",        null: false
   end
 
-  create_table "locations", force: :cascade do |t|
+  create_table "tenancies", force: :cascade do |t|
     t.datetime "checkin"
     t.datetime "checkout"
     t.string   "tenant_cpf"
     t.integer  "car_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["car_id"], name: "index_locations_on_car_id", using: :btree
+    t.index ["car_id"], name: "index_tenancies_on_car_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,5 +48,5 @@ ActiveRecord::Schema.define(version: 20200930201828) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "locations", "cars"
+  add_foreign_key "tenancies", "cars"
 end
