@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/app
+      - bundle-volume:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:9.5
+    volumes:
+      - db-volume:/var/lib/postgresql/9.5/main
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: deploy
+ 
+volumes:
+ bundle-volume:
+ db-volume:
