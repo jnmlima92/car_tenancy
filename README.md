@@ -1,24 +1,23 @@
-# README
+Aplicação de teste técnico em Ruby on Rails utilizando as tecnologias:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* ruby 2.4.2p198
 
-Things you may want to cover:
+* postgresql 9.5
 
-* Ruby version
+* NodeJs 14.13.0
 
-* System dependencies
+Dependências
 
-* Configuration
+* Docker
 
-* Database creation
+* Docker Compose
 
-* Database initialization
+* Portas 3000 e 5432 esatrem liberadas para o server rails e postgresql
 
-* How to run the test suite
+Para execução da aplicação no contâiner: 
 
-* Services (job queues, cache servers, search engines, etc.)
+* Clonar este repositório para local
 
-* Deployment instructions
+* sudo docker-compose run --rm web bundle exec rails db:setup
 
-* ...
+* sudo docker-compose up
