@@ -18,8 +18,10 @@ Para execução da aplicação no contâiner:
 
 * Clonar este repositório para local
 
-* sudo docker-compose run --rm web bundle install
+* sudo docker-compose run --rm web bundle install (Instalar gems)
 
-* sudo docker-compose run --rm web bundle exec rails db:setup
+* sudo docker-compose run --rm web bundle exec rails db:setup (Configurar o banco)
 
-* sudo docker-compose up
+* sudo docker-compose run web bundle exec rspec (Rodar os testes)
+
+* sudo docker-compose up (Subir server)
