@@ -1,3 +1,11 @@
+<div class="col-12 text-center">
+  <% if current_user.present? %>
+    <%= link_to 'Cars list', cars_path, class: 'btn btn-success', style: "margin: 20px;" %>    
+  <% else %>
+    <%= link_to 'Log in', new_user_session_path, class: 'btn btn-success', style: "margin: 20px;" %>
+  <% end %>
+</div>
+ 
 <div class="row">
   <div class="col-10 d-flex justify-content-center">
     <p id="notice"><%= notice %></p>
