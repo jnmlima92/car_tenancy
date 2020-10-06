@@ -1,24 +1,52 @@
-<p id="notice"><%= notice %></p>
+<div class="col-12">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Checkin:</strong>
-  <%= @tenancy.checkin %>
-</p>
+  <div class="col-12">
+    <h3 class="text-center">
+      Rent ID: #<%= @tenancy.id %>
+    </h3>
+  </div>
+</div>
 
-<p>
-  <strong>Checkout:</strong>
-  <%= @tenancy.checkout %>
-</p>
+<div class="col-12">
+  <div class="text-center">
+    <div class="col-12">
+      <p>
+        <strong>Checkin:</strong>
+        <%= @tenancy.checkin %>
+      </p>
+    </div>
+  </div>
 
-<p>
-  <strong>Tenant cpf:</strong>
-  <%= @tenancy.tenant_cpf %>
-</p>
+  <div class="text-center">
+    <div class="col-12">
+      <p>
+        <strong>Checkout:</strong>
+        <%= @tenancy.checkout %>
+      </p>
+    </div>
+  </div>
 
-<p>
-  <strong>Car:</strong>
-  <%= @tenancy.car.model %>
-</p>
+  <div class="text-center">
+    <div class="col-12">
+      <p>
+        <strong>Tenant cpf:</strong>
+        <%= @tenancy.tenant_cpf %>
+      </p>
+    </div>
+  </div>
 
-<%= link_to 'Edit', edit_tenancy_path(@tenancy) %> |
-<%= link_to 'Back', tenancies_path %>
+  <div class="text-center">
+    <div class="col-12">
+      <p>
+        <strong>Car:</strong>
+        <%= @tenancy.car.model %>
+      </p>
+    </div>
+  </div>
+
+  <div class="col-12 text-center">
+    <%= link_to 'Edit', edit_tenancy_path(@tenancy), class: 'btn btn-primary' %>
+    <%= link_to 'Back', tenancies_path, class: 'btn btn-secondary' %>
+  </div>
+</div>

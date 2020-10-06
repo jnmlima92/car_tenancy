@@ -1,35 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-10 d-flex justify-content-center">
+    <p id="notice"><%= notice %></p>
+  </div>
 
-<h1>Cars</h1>
+  <div class="col-12">
+    <div class="col-12">
+      <h1>Cars</h1>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Model</th>
-      <th>Manufacturer</th>
-      <th>Plate</th>
-      <th>Model year</th>
-      <th>Manufacturer year</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="col-12">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Model</th>
+            <th scope="col">Manufacturer</th>
+            <th scope="col">Plate</th>
+            <th scope="col">Model year</th>
+            <th scope="col">Manufacturer year</th>
+            <th scope="col" colspan="3">Actions</th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @cars.each do |car| %>
-      <tr>
-        <td><%= car.model %></td>
-        <td><%= car.manufacturer %></td>
-        <td><%= car.plate %></td>
-        <td><%= car.model_year %></td>
-        <td><%= car.manufacturer_year %></td>
-        <td><%= link_to 'Show', car %></td>
-        <td><%= link_to 'Edit', edit_car_path(car) %></td>
-        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <tbody>
+          <% @cars.each do |car| %>
+            <tr>
+              <th scope="row"><%= car.id %></th>
+              <td><%= car.model %></td>
+              <td><%= car.manufacturer %></td>
+              <td><%= car.plate %></td>
+              <td><%= car.model_year %></td>
+              <td><%= car.manufacturer_year %></td>
+              <td><%= link_to 'Show', car %></td>
+              <td><%= link_to 'Edit', edit_car_path(car) %></td>
+              <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-<br>
+    <div class="col-12">
+      <%= link_to 'New Car', new_car_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'New Car', new_car_path %>

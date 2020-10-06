@@ -1,33 +1,46 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-10 d-flex justify-content-center">
+    <p id="notice"><%= notice %></p>
+  </div>
 
-<h1>Tenancies</h1>
+  <div class="col-12">
+    <div class="col-12">
+      <h1>Tenancies</h1>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Checkin</th>
-      <th>Checkout</th>
-      <th>Tenant cpf</th>
-      <th>Car</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="col-12">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Check in</th>
+            <th scope="col">Check out</th>
+            <th scope="col">Tenant cpf</th>
+            <th scope="col">Car</th>
+            <th scope="col" colspan="3">Actions</th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @tenancies.each do |tenancy| %>
-      <tr>
-        <td><%= tenancy.checkin %></td>
-        <td><%= tenancy.checkout %></td>
-        <td><%= tenancy.tenant_cpf %></td>
-        <td><%= tenancy.car.model %></td>
-        <td><%= link_to 'Show', tenancy %></td>
-        <td><%= link_to 'Edit', edit_tenancy_path(tenancy) %></td>
-        <td><%= link_to 'Destroy', tenancy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <tbody>
+          <% @tenancies.each do |tenancy| %>
+            <tr>
+              <th scope="row"><%= tenancy.id %></th>
+             <td><%= tenancy.checkin %></td>
+            <td><%= tenancy.checkout %></td>
+            <td><%= tenancy.tenant_cpf %></td>
+            <td><%= tenancy.car.model %></td>
+            <td><%= link_to 'Show', tenancy %></td>
+            <td><%= link_to 'Edit', edit_tenancy_path(tenancy) %></td>
+            <td><%= link_to 'Destroy', tenancy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-<br>
+    <div class="col-12">
+      <%= link_to 'New rent', new_tenancy_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'New Tenancy', new_tenancy_path %>

@@ -1,48 +1,57 @@
-<%= form_for(car) do |f| %>
-  <% if car.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
+<div class="col-12">
+  <%= form_for(car) do |f| %>
+    <% if car.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
 
-      <ul>
-      <% car.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <ul>
+        <% car.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group col-6">
+      <%= label_tag :manufacturer %>
+      <%= select_tag 'manufacturer_options', options_for_select([nil] + @manufacturers.map { |opt| [opt['name'], opt['id']] },
+      @selected_manufaturer), onchange: 'get_models()', class: "form-control" %>
+
+      <small id="emailHelp" class="form-text text-muted">Select a manufacturer and next a model.</small>
+      <%= f.hidden_field :manufacturer, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-6">
+        <%= f.label :model %>
+        <%= f.select :model, car.present? ? [car.model, car.model] : [], class: "form-control" %>
+    </div>
+
+
+    <div class="form-group col-6">
+        <%= f.label :plate %>
+        <%= f.text_field :plate, { prompt: 'Informe uma Placa', class: "form-control" } %>
+    </div>
+
+    <div class="form-group col-6">
+        <%= f.label :model_year %>
+        <%= f.number_field :model_year, { prompt: 'Informe o Ano do modelo', class: "form-control" } %>
+    </div>
+
+    <div class="form-group col-6">
+        <%= f.label :manufacturer_year %>
+        <%= f.number_field :manufacturer_year, { prompt: 'Informe o Ano de fabricação', class: "form-control" } %>
+    </div>
+
+    <div class="actions col-6">
+      <%= f.submit "Create", :class => "btn btn-primary" %>
+      <%= link_to 'Back', cars_path, class: "btn btn-secondary" %>
+      
+      <% if action_name == 'edit' %>
+        <%= link_to 'Show', @car, class: "btn btn-info" %>
       <% end %>
-      </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= label_tag :manufacturer %>
-    <%= select_tag 'manufacturer_options', options_for_select([nil] + @manufacturers.map { |opt| [opt['name'], opt['id']] },
-    @selected_manufaturer), onchange: 'get_models()' %>
-  </div>
-
-  <%= f.hidden_field :manufacturer %>
-
-  <div class="field">
-    <%= f.label :model %>
-    <%= f.select :model, car.present? ? [car.model, car.model] : [] %>
-  </div>
-
-  <div class="field">
-    <%= f.label :plate %>
-    <%= f.text_field :plate, { prompt: 'Informe uma Placa' } %>
-  </div>
-
-  <div class="field">
-    <%= f.label :model_year %>
-    <%= f.number_field :model_year, { prompt: 'Informe o Ano do modelo' } %>
-  </div>
-
-  <div class="field">
-    <%= f.label :manufacturer_year %>
-    <%= f.number_field :manufacturer_year, { prompt: 'Informe o Ano de fabricação' } %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
 
 
 <script>
