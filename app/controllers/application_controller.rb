@@ -11,4 +11,11 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password)}
   end
 
+  def render_404
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
+    end
+  end
 end

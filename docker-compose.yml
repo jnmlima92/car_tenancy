@@ -10,11 +10,13 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    stdin_open: true
+    tty: true
 
   db:
-    image: postgres:9.5
+    image: postgres:12.5-alpine
     volumes:
-      - db-volume:/var/lib/postgresql/9.5/main
+      - db-volume:/var/lib/postgresql/12.5/main
     ports:
       - "5432:5432"
     environment:

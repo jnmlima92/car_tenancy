@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
   root "cars#index"
   
-  resources :cars
-  get 'manufacturers', to: 'cars#manufacturers', as: 'manufacturers'
-  get 'models',        to: 'cars#models',        as: 'models'
+  resources :cars do
+    collection do
+      get 'manufacturers', to: 'cars#manufacturers', as: 'manufacturers'
+      get 'models',        to: 'cars#models',        as: 'models'
+    end
+  end
 end

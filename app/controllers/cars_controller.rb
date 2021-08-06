@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 require 'net/http' #move to lib
-
 
 class CarsController < ApplicationController
   before_action :set_car, only: [:show, :edit, :update, :destroy]
@@ -71,41 +71,39 @@ class CarsController < ApplicationController
   end
 
   def manufacturers
-    begin
-      url = URI.parse('http://fipeapi.appspot.com/api/1/carros/marcas.json')
-      req = Net::HTTP::Get.new(url.to_s)
-  
-      res = Net::HTTP.start(url.host, url.port) {|http|
-        http.request(req)
-      }
-  
+    url = URI.parse('http://fipeapi.appspot.com/api/1/carros/marcas.json')
+    req = Net::HTTP::Get.new(url.to_s)
+
+    res = Net::HTTP.start(url.host, url.port) {|http|
+      http.request(req)
+    }
+    
+    if res.kind_of? Net::HTTPSuccess
       @manufacturers = JSON.parse(res.body).map { |manufacturer| { 'name' => manufacturer['fipe_name'], 'id' => manufacturer['id'] } }
       
       if @car.id?
         car_manufacturer = @manufacturers.find { |ma| ma['name'] == @car.manufacturer } 
         @selected_manufaturer = car_manufacturer['id']
       end
-    rescue Exception => exception
-      Rails.logger.error(exception.message)
-      render json: { models: [], error: exception.message }
+    else
+      render_404
     end
   end
 
   def models
-    begin
-      if params[:manufacturer_id].present?
-        url = URI.parse("http://fipeapi.appspot.com/api/1/carros/veiculos/#{params[:manufacturer_id]}.json")
-        req = Net::HTTP::Get.new(url.to_s)
-    
-        res = Net::HTTP.start(url.host, url.port) {|http|
-          http.request(req)
-        }
-        
+    if params[:manufacturer_id].present?
+      url = URI.parse("http://fipeapi.appspot.com/api/1/carros/veiculos/#{params[:manufacturer_id]}.json")
+      req = Net::HTTP::Get.new(url.to_s)
+  
+      res = Net::HTTP.start(url.host, url.port) {|http|
+        http.request(req)
+      }
+      
+      if res.kind_of? Net::HTTPSuccess
         @models = JSON.parse(res.body)
+      else
+        render_404
       end
-    rescue Exception => exception
-      Rails.logger.error(exception.message)
-      render json: { models: [], error: exception.message }
     end
   end
 
